@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 245 234 255;
+    --foreground: 145 29 236;
+    --card: 255 255 255;
+    --card-foreground: 145 29 236;
+    --popover: 255 255 255;
+    --popover-foreground: 145 29 236;
+    --primary: 145 29 236;
+    --primary-foreground: 245 234 255;
+    --secondary: 245 234 255;
+    --secondary-foreground: 145 29 236;
+    --muted: 245 234 255;
+    --muted-foreground: 145 29 236;
+    --accent: 245 234 255;
+    --accent-foreground: 145 29 236;
+    --destructive: 250 12 0;
+    --destructive-foreground: 255 255 255;
+    --warning: 254 202 19;
+    --warning-foreground: 254 202 19;
+    --success: 40 222 37;
+    --success-foreground: 40 222 37;
+    --info: 4 180 252;
+    --info-foreground: 4 180 252;
+    --border: 145 29 236;
+    --input: 145 29 236;
+    --ring: 145 29 236;
+  }
+
+  .dark:root {
+    --background: 26 26 26;
+    --foreground: 245 234 255;
+    --card: 42 42 42;
+    --card-foreground: 245 234 255;
+    --popover: 42 42 42;
+    --popover-foreground: 245 234 255;
+    --primary: 145 29 236;
+    --primary-foreground: 245 234 255;
+    --secondary: 42 42 42;
+    --secondary-foreground: 245 234 255;
+    --muted: 42 42 42;
+    --muted-foreground: 245 234 255;
+    --accent: 42 42 42;
+    --accent-foreground: 245 234 255;
+    --destructive: 250 12 0;
+    --destructive-foreground: 245 234 255;
+    --warning: 254 202 19;
+    --warning-foreground: 254 202 19;
+    --success: 40 222 37;
+    --success-foreground: 40 222 37;
+    --info: 4 180 252;
+    --info-foreground: 4 180 252;
+    --border: 245 234 255;
+    --input: 245 234 255;
+    --ring: 245 234 255;
+  }
+}

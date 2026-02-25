@@ -1,0 +1,43 @@
+
+
+> mobile@1.0.0 dev /home/muliaandiki/project/myProductivity/apps/mobile
+> expo start
+
+[90mStarting project at /home/muliaandiki/project/myProductivity/apps/mobile[39m
+[90mReact Compiler enabled[39m
+[2mStarting Metro Bundler[22m
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▄▄▄ ▀▀▀█ █ ▄▄▄▄▄ █
+█ █   █ ██▄▀ █  ▄▄█ █   █ █
+█ █▄▄▄█ ██▀▄ ▄▀▀█▀█ █▄▄▄█ █
+█▄▄▄▄▄▄▄█ ▀▄█ ▀▄▀ █▄▄▄▄▄▄▄█
+█ ▄▀ ▄▀▄█▀▄▀█▄▀█▀ █▄█▀█▀▀▄█
+█ ▄ ▄ ▄▄▀▀▄██▄▄▄▄ ▀███▄▀▀ █
+█▀█ ▀██▄▀▀▄ █▀█▄ █ ▄▀▀█▀ ██
+█ ▄▄▄▀█▄ ██ █▀▄▀ ▄▀ ██▄▀  █
+█▄██▄██▄█ ▄  ▄▄ █ ▄▄▄  ▄▀▄█
+█ ▄▄▄▄▄ ██ █▀▄  █ █▄█ ███ █
+█ █   █ █ ▀▄▄ ▀█▄ ▄  ▄ █▀▀█
+█ █▄▄▄█ █▀█▄ ▀█▄ ▄█▀▀▄█   █
+█▄▄▄▄▄▄▄█▄██▄██▄▄▄▄█▄▄███▄█
+
+› Metro waiting on [4mexp://192.168.1.197:8081[24m
+› Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+› Web is waiting on [4mhttp://localhost:8081[24m
+
+› Using [36mExpo Go[39m
+› Press [1ms[22m [2m│[22m switch to development build
+
+› Press [1ma[22m [2m│[22m open Android
+› Press [1mw[22m [2m│[22m open web
+
+› Press [1mj[22m [2m│[22m open debugger
+› Press [1mr[22m [2m│[22m reload app
+› Press [1mm[22m [2m│[22m toggle menu
+› [1mshift+m[22m [2m│[22m more tools
+› Press [1mo[22m [2m│[22m open project code in your editor
+
+› Press [1m?[22m [2m│[22m show all commands
+
+Logs for your project will appear below.[2m Press Ctrl+C to exit.[22m
