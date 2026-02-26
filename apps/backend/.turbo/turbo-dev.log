@@ -1,6 +1,0 @@
-
-
-> backend@ dev /home/muliaandiki/project/myProductivity/apps/backend
-> go run .
-
-go: downloading go1.23.0 (linux/amd64)

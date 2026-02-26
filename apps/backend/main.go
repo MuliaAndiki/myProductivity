@@ -1,15 +1,9 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"myproductivity-backend/src/app"
+)
 
 func main() {
-    app := gin.Default()
-
-    app.GET("/", func(c *gin.Context) {
-        c.JSON(200, gin.H{
-            "message": "Hello from Gin 🚀",
-        })
-    })
-
-    app.Run(":8080")
+ app.StartApp()
 }

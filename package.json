@@ -6,10 +6,8 @@
     "turbo": "^2.6.3"
   },
   "scripts": {
-    "dev": "turbo run dev --parallel",
-    "dev:web": "turbo run dev --filter=web",
-    "dev:mobile": "pnpm --filter mobile dev",
-    "build": "turbo run build",
-    "dev:be": "turbo run dev --filter=backend"
+    "dev": "turbo run dev --parallel --filter=!mobile",
+    "mobile": "pnpm --filter mobile dev",
+    "mobile:clear": "pnpm --filter mobile exec expo start -c"
   }
 }
