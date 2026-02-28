@@ -8,11 +8,20 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
-func StartApp(){
-	 app := gin.Default()
-	 config.LoadEnv()
-	 database.ConnectDb()
-	 routes.InitialRoutes(app)
-	 app.Run(server.Run)
+
+func StartApp() {
+	app := gin.Default()
+
 	
+	config.LoadEnv()
+
+	
+	database.ConnectDb()
+
+
+	routes.AuthRoutes(app)
+	routes.InitialRoutes(app)
+
+
+	app.Run(server.Run)
 }
