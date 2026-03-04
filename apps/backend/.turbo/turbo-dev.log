@@ -11,7 +11,7 @@
 [2mPrisma schema loaded from prisma/schema.prisma[22m
 
 
-✔ Generated [1mPrisma Client[22m (v6.19.2)[2m to ./../../node_modules/.pnpm/@prisma+client@6.19.2_prisma@6.19.2_typescript@5.9.3/node_modules/@prisma/client[22m in 78ms
+✔ Generated [1mPrisma Client[22m (v6.19.2)[2m to ./../../node_modules/.pnpm/@prisma+client@6.19.2_prisma@6.19.2_typescript@5.9.3/node_modules/@prisma/client[22m in 57ms
 
 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
 

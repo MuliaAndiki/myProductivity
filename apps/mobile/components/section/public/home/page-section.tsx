@@ -42,7 +42,7 @@ export default function SectionHomePage() {
         </View>
 
         <View className="w-full flex flex-col items-center justify-center gap-2 ">
-          <Text className="text-4xl font-bold">Judul</Text>
+          <Text className="text-4xl font-bold">Fluxo</Text>
           <Text className="text-2xl font-semibold text-center  ">
             Unleash your potential through movement
           </Text>
