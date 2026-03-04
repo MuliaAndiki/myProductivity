@@ -1,5 +1,7 @@
+import AuthApi from "./module/auth.service";
+
 class Api {
-  // endpoint
+  static Auth = new AuthApi();
 }
 
 export default Api;

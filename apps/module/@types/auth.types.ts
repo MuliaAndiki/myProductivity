@@ -3,6 +3,7 @@ export interface Auth {
   id: string;
   email: string;
   fullName: string;
+  identifer: string;
   password: string;
   phone: string;
   token?: string;
@@ -23,7 +24,7 @@ export type PickRegister = Pick<
   Auth,
   "email" | "fullName" | "password" | "role" | "phone"
 >;
-export type PickLogin = Pick<Auth, "email" | "password" | "phone" | "id">;
+export type PickLogin = Pick<Auth, "email" | "password" | "phone">;
 export type PickID = Pick<Auth, "id">;
 export type PickForgotPassword = Pick<Auth, "email" | "phone">;
 export type PickVerify = Pick<Auth, "email" | "otp">;
@@ -36,3 +37,6 @@ export type PickUpdateProfile = Pick<
 export type PickUpdatePassword = Pick<Auth, "password">;
 export type PickActiveAccount = Pick<Auth, "activateToken" | "password">;
 export type PickLoginAllReady = Pick<Auth, "token">;
+
+//
+export type FormLogin = Pick<Auth, "identifer" | "password">;

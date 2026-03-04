@@ -5,14 +5,30 @@ import { ChevronLeft } from "lucide-react-native";
 import { FlatColors } from "@/core/providers/theme.provinder";
 import { InputWrapper } from "@/components/wrapper/InputWrapper";
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
+import React from "react";
+import { FormLogin } from "../../../../../module/@types/auth.types";
 
 interface LoginSectionProps {
   namespace: {
     router: Router;
     theme: FlatColors;
   };
+  service: {
+    mutation: {
+      login: () => void;
+      isPending: boolean;
+    };
+  };
+  state: {
+    formLogin: FormLogin;
+    setFormLogin: React.Dispatch<React.SetStateAction<FormLogin>>;
+  };
 }
-const LoginSection: React.FC<LoginSectionProps> = ({ namespace }) => {
+const LoginSection: React.FC<LoginSectionProps> = ({
+  namespace,
+  state,
+  service,
+}) => {
   return (
     <ScrollView className="relative">
       <View className="w-full min-h-screen flex items-center justify-start flex-col gap-20">
@@ -32,10 +48,19 @@ const LoginSection: React.FC<LoginSectionProps> = ({ namespace }) => {
         </View>
         <View className="w-full gap-10">
           <InputWrapper placeholder="Email or Phone Number" />
-          <InputWrapper placeholder="Email or Phone Number" />
+          <InputWrapper
+            placeholder="Password"
+            value={state.formLogin.password}
+            onChangeText={(e) =>
+              state.setFormLogin((prev) => ({
+                ...prev,
+                password: e,
+              }))
+            }
+          />
         </View>
         <View className="w-full gap-10 flex justify-center">
-          <ButtonWrapper>
+          <ButtonWrapper onPress={() => service.mutation.login()}>
             <Text>Login</Text>
           </ButtonWrapper>
           <Text className="w-full text-center text-lg font-semibold text-primary">

@@ -2,6 +2,11 @@
   "name": "my-productivity",
   "private": true,
   "packageManager": "pnpm@8.10.0",
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.21",
+    "@tanstack/react-query-devtools": "^5.90.21",
+    "axios": "^1.13.6"
+  },
   "devDependencies": {
     "turbo": "^2.6.3"
   },
