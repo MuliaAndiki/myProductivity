@@ -21,9 +21,7 @@ export const setOnUnauthorized = (handler: OnUnauthorized) => {
 };
 
 const isDev =
-  typeof __DEV__ !== "undefined"
-    ? __DEV__
-    : process.env.NODE_ENV === "development";
+  typeof process !== "undefined" && process.env.NODE_ENV === "development";
 
 const getBaseURL = async (): Promise<string | undefined> => {
   if (_baseURLProvider) return _baseURLProvider();

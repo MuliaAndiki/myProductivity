@@ -1,5 +1,5 @@
 import type { Context } from 'elysia';
-import type { JwtPayload } from '@repo/module';
+import type { JwtPayload } from '@repo/shared';
 import { AppFile } from '@/types/appType';
 
 export interface AppContext extends Context {

@@ -16,9 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@repo/module": ["../module/index.ts"]
+      "@repo/module": ["../shared/index.ts"]
     }
   },
-  "include": ["src", "scripts", "types", "api", "../module"],
+  "include": ["src", "scripts", "types", "api", "../shared"],
   "exclude": ["node_modules", "dist", ".vercel"]
 }

@@ -1,15 +1,13 @@
 import { useAppNameSpace } from "@/hooks/costum/namespace";
-import { useAuthModule } from "../../../../../../module/service/auths/useAuth";
+
 import { setRole, setToken } from "@/stores/authSlice/authSlice";
-import {
-  FormLogin,
-  FormRegister,
-} from "../../../../../../module/@types/auth.types";
+import { FormLogin, FormRegister } from "@repo/shared";
 import { logout } from "@/stores/authSlice/authSlice";
+import { useAuthRepo } from "@repo/shared";
 
 export function useLoginService() {
   const ns = useAppNameSpace();
-  const module = useAuthModule();
+  const module = useAuthRepo();
   const loginMutation = module.mutation.login();
 
   const login = async (formLogin: FormLogin) => {
@@ -58,7 +56,7 @@ export function useLoginService() {
 
 export function useRegisterService() {
   const ns = useAppNameSpace();
-  const module = useAuthModule();
+  const module = useAuthRepo();
   const registerMutation = module.mutation.register();
 
   const register = async (formRegister: FormRegister) => {
@@ -128,7 +126,7 @@ export function useRegisterService() {
 
 export function useLogutService() {
   const ns = useAppNameSpace();
-  const module = useAuthModule();
+  const module = useAuthRepo();
   const logoutMutate = module.mutation.logout();
 
   const Logout = () => {

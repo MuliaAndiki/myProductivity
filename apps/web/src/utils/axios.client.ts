@@ -1,10 +1,6 @@
 import { getCookie, deleteCookie } from 'cookies-next';
 
-import AxiosClient, {
-  setBaseURLProvider,
-  setOnUnauthorized,
-  setTokenProvider,
-} from '../../../module/utils/axios';
+import { AxiosClient, setBaseURLProvider, setOnUnauthorized, setTokenProvider } from '@repo/shared';
 import { APP_SESSION_COOKIE_KEY } from '@/configs/cookies.config';
 
 setBaseURLProvider(() => process.env.NEXT_PUBLIC_BACKEND_URL);

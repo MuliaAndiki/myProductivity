@@ -1,8 +1,8 @@
 import { AppContext } from '@/contex';
 import { ErrorHandling } from '@/error';
 import { HttpResponse } from '@/http';
-import { JwtPayload } from '@repo/module';
-import { PickCreateCategory, PickIDCategory } from '../../../module/@types/category.types';
+import { JwtPayload } from '@repo/shared';
+import { PickCreateCategory, PickIDCategory } from '@repo/shared';
 import categoryService from '@/service/category.service';
 
 class CategoryController {

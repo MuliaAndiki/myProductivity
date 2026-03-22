@@ -1,6 +1,6 @@
 import { useLogin, useLogout, useRegister } from "./state/mutation";
 
-export function useAuthModule() {
+export function useAuthRepo() {
   return {
     mutation: {
       login: useLogin,

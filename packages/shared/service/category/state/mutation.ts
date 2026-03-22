@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { TResponse } from "../../../utils/trespone";
-import { PickCreateCategory } from "../../../@types/category.types";
-import Api from "../../../api/useApi";
+import { TResponse } from "@/utils/trespone";
+import { PickCreateCategory } from "@/@types/category.types";
+import Api from "@/api/props.service";
 
 export function useCreate() {
   return useMutation<TResponse<any>, Error, PickCreateCategory>({

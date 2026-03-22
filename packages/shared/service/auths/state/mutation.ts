@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import { TResponse } from "../../../utils/trespone";
-import { FormLogin, PickRegister } from "../../../@types/auth.types";
-import Api from "../../../api/useApi";
+import { TResponse } from "@/utils/trespone";
+import { FormLogin, PickRegister } from "@/@types/auth.types";
+import Api from "@/api/props.service";
 
 export function useRegister() {
   return useMutation<TResponse<any>, Error, PickRegister>({

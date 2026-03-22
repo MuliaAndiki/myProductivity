@@ -10,3 +10,4 @@ export type PickCreateCategory = Pick<
   ICategory,
   "title" | "desc" | "avatarCategoryUrl"
 >;
+export type PickIDCategory = Pick<ICategory, "id">

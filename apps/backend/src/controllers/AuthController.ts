@@ -8,7 +8,7 @@ import {
   PickVerify,
   PickSendOtp,
   PickResetPassword,
-} from '@repo/module';
+} from '@repo/shared';
 import prisma from 'prisma/client';
 import { AppContext } from '@/contex/index';
 import { generateOtp } from '@/utils/generate-otp';

@@ -1,8 +1,9 @@
 {
-  "name": "@repo/module",
+  "name": "@repo/shared",
   "version": "1.0.0",
   "private": true,
   "types": "index.ts",
+  "main": "index.ts",
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^25.3.3"

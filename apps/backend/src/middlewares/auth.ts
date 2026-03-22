@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JwtPayload } from '../../../module/@types/auth.types';
+import { JwtPayload } from '@repo/shared';
 import { env } from '@/config/env.config';
 
 export const verifyToken = () => ({

@@ -1,5 +1,5 @@
 import prisma from 'prisma/client';
-import { PickCreateCategory, PickIDCategory } from '../../../module/@types/category.types';
+import { PickCreateCategory, PickIDCategory } from '../../../shared/@types/category.types';
 import { JwtPayload } from '@repo/module';
 import { AppContext } from '@/contex';
 import { HttpResponse } from '@/http';
