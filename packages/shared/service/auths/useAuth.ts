@@ -1,4 +1,11 @@
-import { useLogin, useLogout, useRegister } from "./state/mutation";
+import {
+  useForgotPassword,
+  useLogin,
+  useLogout,
+  useRegister,
+  useResend,
+  useVerifyOtp,
+} from "./state/mutation";
 
 export function useAuthRepo() {
   return {
@@ -6,6 +13,9 @@ export function useAuthRepo() {
       login: useLogin,
       register: useRegister,
       logout: useLogout,
+      verify: useVerifyOtp,
+      resend: useResend,
+      forgot: useForgotPassword,
     },
     query: {
       //

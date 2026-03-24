@@ -1,6 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { TResponse } from "@/utils/trespone";
-import { FormLogin, PickRegister } from "@/@types/auth.types";
+import {
+  PickForgotPassword,
+  PickLogin,
+  PickRegister,
+  PickSendOtp,
+  PickVerify,
+} from "@/@types/auth.types";
 import Api from "@/api/props.service";
 
 export function useRegister() {
@@ -10,7 +16,7 @@ export function useRegister() {
 }
 
 export function useLogin() {
-  return useMutation<TResponse<any>, Error, FormLogin>({
+  return useMutation<TResponse<any>, Error, PickLogin>({
     mutationFn: (payload) => Api.Auth.Login(payload),
   });
 }
@@ -18,5 +24,23 @@ export function useLogin() {
 export function useLogout() {
   return useMutation<TResponse<any>, Error, any>({
     mutationFn: () => Api.Auth.Logout(),
+  });
+}
+
+export function useVerifyOtp() {
+  return useMutation<TResponse<any>, Error, PickVerify>({
+    mutationFn: (payload) => Api.Auth.VerifyOtp(payload),
+  });
+}
+
+export function useResend() {
+  return useMutation<TResponse<any>, Error, PickSendOtp>({
+    mutationFn: (payload) => Api.Auth.Resend(payload),
+  });
+}
+
+export function useForgotPassword() {
+  return useMutation<TResponse<any>, Error, PickForgotPassword>({
+    mutationFn: (payload) => Api.Auth.ForgotPassword(payload),
   });
 }

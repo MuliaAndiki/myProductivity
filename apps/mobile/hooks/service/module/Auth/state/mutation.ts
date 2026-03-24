@@ -1,7 +1,13 @@
 import { useAppNameSpace } from "@/hooks/costum/namespace";
 
 import { setRole, setToken } from "@/stores/authSlice/authSlice";
-import { FormLogin, FormRegister } from "@repo/shared";
+import {
+  FormForgotPassword,
+  FormLogin,
+  FormRegister,
+  PickSendOtp,
+  PickVerify,
+} from "@repo/shared";
 import { logout } from "@/stores/authSlice/authSlice";
 import { useAuthRepo } from "@repo/shared";
 
@@ -96,7 +102,8 @@ export function useRegisterService() {
             pathname: "/(auth)/verifikasi/page",
             params: {
               target: "/login/page",
-              var: email,
+              email: email,
+              point: "register",
             },
           });
         }
@@ -145,6 +152,7 @@ export function useLogutService() {
           });
         },
         onError: (err) => {
+          ns.dispatch(logout());
           ns.alert.toast({
             title: "Failed",
             message: "Logout Failed",
@@ -164,4 +172,133 @@ export function useLogutService() {
     Logout,
     isPending: logoutMutate.isPending,
   };
+}
+
+export function useVerifyService() {
+  const ns = useAppNameSpace();
+  const module = useAuthRepo();
+  const Verifikasi = module.mutation.verify();
+  const VerifikasiOtp = async (payload: PickVerify) => {
+    if (!payload.email || !payload.otp) {
+      return false;
+    }
+
+    Verifikasi.mutateAsync(payload, {
+      onSuccess: (res) => {
+        const { email } = res.data;
+        ns.alert.toast({
+          title: "successfully",
+          message: `you succesfuly verify email:${email}`,
+          icon: "success",
+        });
+      },
+      onError: (err) => {
+        ns.alert.toast({
+          title: "Failed",
+          message: "Your Failed Verify",
+          icon: "error",
+          onVoid: () => {
+            console.log(err);
+          },
+        });
+      },
+    });
+  };
+  return {
+    VerifikasiOtp,
+    isPending: Verifikasi.isPending,
+  };
+}
+
+export function useResendService() {
+  const ns = useAppNameSpace();
+  const module = useAuthRepo();
+  const resend = module.mutation.resend();
+  const Resend = async (formResend: PickSendOtp) => {
+    if (!formResend.email) {
+      return false;
+    }
+
+    resend.mutate(formResend, {
+      onSuccess: (res) => {
+        const { email } = res.data;
+
+        ns.alert.toast({
+          title: "successfully",
+          icon: "success",
+          message: `Please check your email again ${email}`,
+        });
+      },
+      onError: (err) => {
+        ns.alert.toast({
+          title: "Failed",
+          icon: "error",
+
+          onVoid: () => {
+            console.error(err);
+          },
+        });
+      },
+    });
+  };
+  return { Resend, isPending: resend.isPending };
+}
+
+export function useForgotPasswordService() {
+  const ns = useAppNameSpace();
+  const module = useAuthRepo();
+  const forgot = module.mutation.forgot();
+
+  const ForgotPassword = async (formForgotPassword: FormForgotPassword) => {
+    //validation
+    if (!formForgotPassword.identifer) {
+      return false;
+    }
+
+    const payload: any = {};
+    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+      formForgotPassword.identifer,
+    );
+
+    if (isEmail) {
+      payload.email = formForgotPassword.identifer;
+    } else {
+      payload.phone = formForgotPassword.identifer;
+    }
+
+    forgot.mutate(payload, {
+      onSuccess: (res) => {
+        const { email } = res.data;
+        if (!email) {
+          ns.router.push({
+            pathname: "/(auth)/forgotPassword/page",
+          });
+        } else {
+          ns.router.push({
+            pathname: "/(auth)/verifikasi/page",
+            params: {
+              target: "/(auth)/reset-password/page",
+              email: email,
+              point: "forgotPassword",
+            },
+          });
+        }
+        ns.alert.toast({
+          title: "successfully",
+          icon: "success",
+        });
+      },
+      onError: (err) => {
+        ns.alert.toast({
+          title: "Failed",
+          icon: "error",
+          message: "failed detect email",
+          onVoid: () => {
+            console.log(err);
+          },
+        });
+      },
+    });
+  };
+  return { ForgotPassword, isPending: forgot.isPending };
 }

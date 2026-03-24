@@ -1,19 +1,24 @@
-type ToastType = "success" | "error" | "warning" | "info" | "question";
+export type ToastType = "success" | "error" | "warning" | "info" | "question";
+export type ConfirmButtonColor =
+  | "primary"
+  | "secondary"
+  | "destructive"
+  | "default";
 
 export interface ModalProps {
   title: string;
-  icon: ToastType;
+  icon?: ToastType;
   deskripsi: string;
   confirmButtonText?: string;
-  confirmButtonColor?: string;
+  confirmButtonColor?: ConfirmButtonColor;
   onConfirm?: () => void;
   onClose?: () => void;
 }
 
 export interface ToastProps {
-  title: string;
+  title?: string;
   icon?: ToastType;
-  message: string;
+  message?: string;
   onVoid?: () => void;
 }
 

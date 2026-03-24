@@ -70,9 +70,10 @@ const LoginSection: React.FC<LoginSectionProps> = ({ ns, state, service }) => {
           <ButtonWrapper onPress={() => service.mutation.login()}>
             <Text className="font-bold">Login</Text>
           </ButtonWrapper>
+
           <Link href={"/forgotPassword/page"}>
             <Text className="w-full text-center text-lg font-semibold text-primary">
-              Forget Password
+              Forgot Password
             </Text>
           </Link>
         </View>

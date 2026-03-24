@@ -45,3 +45,7 @@ export type FormRegister = Pick<
   Auth,
   "identifer" | "first_name" | "last_name" | "password" | "role"
 >;
+
+export type FormForgotPassword = Pick<Auth, "identifer">;
+
+export type FormResend = Pick<Auth, "email">;

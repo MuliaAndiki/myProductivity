@@ -7,17 +7,26 @@ import {
 } from "react-native";
 import { Input } from "./input";
 
-const OTPInput = ({ length = 4 }: { length?: number }) => {
-  const [otp, setOtp] = useState<string[]>(new Array(length).fill(""));
+interface OTPInputProps {
+  length?: number;
+  onCodeChange?: (code: string) => void;
+}
 
+const OTPInput = ({ length = 4, onCodeChange }: OTPInputProps) => {
+  const [otp, setOtp] = useState<string[]>(new Array(length).fill(""));
   const inputs = useRef<(TextInput | null)[]>([]);
 
   const handleChange = (text: string, index: number) => {
+    const char = text.slice(-1);
     const newOtp = [...otp];
-    newOtp[index] = text;
+    newOtp[index] = char;
     setOtp(newOtp);
 
-    if (text && index < length - 1) {
+    if (onCodeChange) {
+      onCodeChange(newOtp.join(""));
+    }
+
+    if (char && index < length - 1) {
       inputs.current[index + 1]?.focus();
     }
   };
