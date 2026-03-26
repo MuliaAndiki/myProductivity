@@ -5,6 +5,7 @@ import {
   FormForgotPassword,
   FormLogin,
   FormRegister,
+  PickResetPassword,
   PickSendOtp,
   PickVerify,
 } from "@repo/shared";
@@ -119,7 +120,7 @@ export function useRegisterService() {
           message: "Login Failed",
           icon: "error",
           onVoid: () => {
-            console.log(err);
+            console.error(err);
           },
         });
       },
@@ -158,7 +159,7 @@ export function useLogutService() {
             message: "Logout Failed",
             icon: "error",
             onVoid: () => {
-              console.log(err);
+              console.error(err);
             },
           });
           ns.router.push({
@@ -198,7 +199,7 @@ export function useVerifyService() {
           message: "Your Failed Verify",
           icon: "error",
           onVoid: () => {
-            console.log(err);
+            console.error(err);
           },
         });
       },
@@ -269,9 +270,14 @@ export function useForgotPasswordService() {
     forgot.mutate(payload, {
       onSuccess: (res) => {
         const email = res.data.email as string;
+        const phone = res.data.phone as string;
         if (!email) {
           ns.router.push({
             pathname: "/(auth)/forgotPassword/page",
+            params: {
+              identifer: phone,
+              target: "/(auth)/login/page",
+            },
           });
         } else {
           ns.router.push({
@@ -294,11 +300,39 @@ export function useForgotPasswordService() {
           icon: "error",
           message: "failed detect email",
           onVoid: () => {
-            console.log(err);
+            console.error(err);
           },
         });
       },
     });
   };
   return { ForgotPassword, isPending: forgot.isPending };
+}
+
+export function useResetPasswordService() {
+  const ns = useAppNameSpace();
+  const module = useAuthRepo();
+  const reset = module.mutation.reset();
+
+  const ResetPassword = async (formResetPassword: PickResetPassword) => {
+    if (!formResetPassword.password) {
+      return false;
+    }
+    reset.mutate(formResetPassword, {
+      onSuccess: () => {
+        //
+      },
+      onError: (err) => {
+        ns.alert.toast({
+          title: "Failed",
+          icon: "error",
+          message: "failed reset your password",
+          onVoid: () => {
+            console.error(err);
+          },
+        });
+      },
+    });
+  };
+  return { ResetPassword, isPending: reset.isPending };
 }

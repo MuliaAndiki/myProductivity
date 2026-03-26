@@ -7,7 +7,7 @@ export const ButtonSliceAuth: ButtonSliceAuthType[] = [
   },
   {
     title: "Register or Login with Google",
-    href: "/(auth)/verifikasi/page",
+    href: "/(auth)/reset-password/page",
   },
   {
     title: "Login us Email or Phone",

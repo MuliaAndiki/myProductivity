@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Input } from "../ui/input";
 import { View } from "react-native";
+import { cn } from "@/lib/utils";
 
 interface InputWithIconProps extends React.ComponentProps<typeof Input> {
   leftIcon?: React.ReactNode;
@@ -22,7 +23,7 @@ function InputWrapper({
       )}
 
       <Input
-        className={`${leftIcon} && "pl-10", ${rightIcon} && "pr-10", ${className}`}
+        className={cn(leftIcon && "pl-10", rightIcon && "pr-10", className)}
         {...props}
       />
 

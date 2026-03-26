@@ -4,6 +4,7 @@ import {
   useLogutService,
   useRegisterService,
   useResendService,
+  useResetPasswordService,
   useVerifyService,
 } from "./state/mutation";
 
@@ -16,6 +17,7 @@ const useAuth = () => {
       verifyOtp: useVerifyService,
       resend: useResendService,
       forgot: useForgotPasswordService,
+      reset: useResetPasswordService,
     },
   };
 };

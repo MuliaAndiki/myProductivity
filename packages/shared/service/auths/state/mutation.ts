@@ -4,6 +4,7 @@ import {
   PickForgotPassword,
   PickLogin,
   PickRegister,
+  PickResetPassword,
   PickSendOtp,
   PickVerify,
 } from "@/@types/auth.types";
@@ -42,5 +43,11 @@ export function useResend() {
 export function useForgotPassword() {
   return useMutation<TResponse<any>, Error, PickForgotPassword>({
     mutationFn: (payload) => Api.Auth.ForgotPassword(payload),
+  });
+}
+
+export function useResetPassword() {
+  return useMutation<TResponse<any>, Error, PickResetPassword>({
+    mutationFn: (payload) => Api.Auth.ResetPassword(payload),
   });
 }

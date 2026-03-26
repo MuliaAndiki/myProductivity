@@ -4,6 +4,7 @@ import {
   useLogout,
   useRegister,
   useResend,
+  useResetPassword,
   useVerifyOtp,
 } from "./state/mutation";
 
@@ -16,6 +17,7 @@ export function useAuthRepo() {
       verify: useVerifyOtp,
       resend: useResend,
       forgot: useForgotPassword,
+      reset: useResetPassword,
     },
     query: {
       //

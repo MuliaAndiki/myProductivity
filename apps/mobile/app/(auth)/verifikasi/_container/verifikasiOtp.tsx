@@ -45,7 +45,8 @@ const VerifyOtpContainer = () => {
         ns.router.push({
           pathname: params.target,
           params: {
-            email: params.identifer,
+            identifer: params.identifer,
+            target: "/(auth)/login/page",
           },
         });
       }
