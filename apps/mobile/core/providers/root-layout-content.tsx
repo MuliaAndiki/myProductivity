@@ -1,9 +1,9 @@
-import "@/styles/global.css";
-
 import { Stack } from "expo-router";
+import { useMemo } from "react";
+
 import ThemeToggle from "@/components/ui/toggleTheme";
 import { useTheme } from "@/core/providers/theme.provinder";
-import { useMemo } from "react";
+
 export function RootLayoutContent() {
   const { colors, isDark, theme } = useTheme();
 

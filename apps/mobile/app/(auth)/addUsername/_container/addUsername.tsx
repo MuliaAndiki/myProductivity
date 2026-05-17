@@ -28,7 +28,6 @@ const AddUsernameContainer = () => {
   // mutate
   const addUsernameMutate = service.auth.mutation.addUsername();
 
-  // not test
   const handleAddUsername = async () => {
     await addUsernameMutate.AddUsername(formAddUsername);
   };

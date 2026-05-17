@@ -1,4 +1,5 @@
 import { useAppNameSpace } from "@/hooks/costum/namespace";
+import { useMutation } from "@tanstack/react-query";
 
 import { setRole, setToken } from "@/stores/authSlice/authSlice";
 import {
@@ -16,7 +17,9 @@ import { useAuthRepo } from "@repo/shared";
 export function useLoginService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const loginMutation = module.mutation.login();
+  const loginMutation = useMutation<any, Error, FormLogin>(
+    module.mutation.login(),
+  );
 
   const login = async (formLogin: FormLogin) => {
     const payload: FormLogin = {
@@ -25,7 +28,7 @@ export function useLoginService() {
       username: formLogin.username,
     };
 
-    loginMutation.mutate(payload, {
+    loginMutation.mutateAsync(payload, {
       onSuccess: (res) => {
         const { token, role } = res.data;
 
@@ -69,7 +72,9 @@ export function useLoginService() {
 export function useRegisterService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const registerMutation = module.mutation.register();
+  const registerMutation = useMutation<any, Error, FormRegister>(
+    module.mutation.register(),
+  );
 
   const register = async (formRegister: FormRegister) => {
     if (
@@ -132,39 +137,36 @@ export function useRegisterService() {
 export function useLogutService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const logoutMutate = module.mutation.logout();
+  const logoutMutate = useMutation<any, Error, void>(module.mutation.logout());
 
   const Logout = () => {
-    logoutMutate.mutate(
-      {},
-      {
-        onSuccess: () => {
-          ns.dispatch(logout());
-          ns.alert.toast({
-            title: "successfully",
-            message: "you succesfuly logout",
-            icon: "success",
-          });
-          ns.router.push({
-            pathname: "/(auth)/login/page",
-          });
-        },
-        onError: (err) => {
-          ns.dispatch(logout());
-          ns.alert.toast({
-            title: "Failed",
-            message: "Logout Failed",
-            icon: "error",
-            onVoid: () => {
-              console.error(err);
-            },
-          });
-          ns.router.push({
-            pathname: "/(auth)/login/page",
-          });
-        },
+    logoutMutate.mutateAsync(undefined, {
+      onSuccess: () => {
+        ns.dispatch(logout());
+        ns.alert.toast({
+          title: "successfully",
+          message: "you succesfuly logout",
+          icon: "success",
+        });
+        ns.router.push({
+          pathname: "/(auth)/login/page",
+        });
       },
-    );
+      onError: (err) => {
+        ns.dispatch(logout());
+        ns.alert.toast({
+          title: "Failed",
+          message: "Logout Failed",
+          icon: "error",
+          onVoid: () => {
+            console.error(err);
+          },
+        });
+        ns.router.push({
+          pathname: "/(auth)/login/page",
+        });
+      },
+    });
   };
   return {
     Logout,
@@ -175,7 +177,9 @@ export function useLogutService() {
 export function useVerifyService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const Verifikasi = module.mutation.verify();
+  const Verifikasi = useMutation<any, Error, PickVerify>(
+    module.mutation.verify(),
+  );
   const VerifikasiOtp = async (payload: PickVerify) => {
     if (!payload.email || !payload.otp) {
       return false;
@@ -211,13 +215,13 @@ export function useVerifyService() {
 export function useResendService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const resend = module.mutation.resend();
+  const resend = useMutation<any, Error, PickSendOtp>(module.mutation.resend());
   const Resend = async (formResend: PickSendOtp) => {
     if (!formResend.email) {
       return false;
     }
 
-    resend.mutate(formResend, {
+    resend.mutateAsync(formResend, {
       onSuccess: (res) => {
         const email = res.data.email as string;
 
@@ -245,7 +249,9 @@ export function useResendService() {
 export function useForgotPasswordService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const forgot = module.mutation.forgot();
+  const forgot = useMutation<any, Error, FormForgotPassword>(
+    module.mutation.forgot(),
+  );
 
   const ForgotPassword = async (formForgotPassword: FormForgotPassword) => {
     //validation
@@ -310,14 +316,16 @@ export function useForgotPasswordService() {
 export function useResetPasswordService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const reset = module.mutation.reset();
+  const reset = useMutation<any, Error, PickResetPassword>(
+    module.mutation.reset(),
+  );
 
   const ResetPassword = async (formResetPassword: PickResetPassword) => {
     if (!formResetPassword.password) {
       // no alert
       return false;
     }
-    reset.mutate(formResetPassword, {
+    reset.mutateAsync(formResetPassword, {
       onSuccess: () => {
         //
       },
@@ -339,7 +347,9 @@ export function useResetPasswordService() {
 export function useAddUsernameService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const addUsername = module.mutation.addUsername();
+  const addUsername = useMutation<any, Error, PickAddUsername>(
+    module.mutation.addUsername(),
+  );
 
   const AddUsername = async (formAddUsername: PickAddUsername) => {
     if (!formAddUsername) {

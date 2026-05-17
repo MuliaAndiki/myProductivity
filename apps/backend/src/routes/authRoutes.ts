@@ -52,7 +52,7 @@ class AuthRouter {
         description: 'Logout Application',
       },
     });
-    this.authRouter.post('/forgot', (c: AppContext) => AuthController.forgotPassword(c), {
+    this.authRouter.post('/forgotPassword', (c: AppContext) => AuthController.forgotPassword(c), {
       body: t.Object({
         email: t.Optional(t.String({ format: 'email' })),
         phone: t.Optional(t.String()),

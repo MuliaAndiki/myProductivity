@@ -12,6 +12,10 @@
     "@tanstack/react-query-devtools": "^5.90.21",
     "axios": "^1.13.6"
   },
+  "overrides": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
   "devDependencies": {
     "turbo": "^2.6.3"
   },
