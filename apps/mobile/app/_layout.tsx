@@ -2,10 +2,11 @@ import "@/styles/global.css";
 import "@/utils/Axios.client";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as SplashScreen from "expo-splash-screen";
-import { AppProviders } from "./provinder";
-import { RootLayoutContent } from "./screen.stack";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
+
+import { AppProviders } from "@/core/providers/app-providers";
+import { RootLayoutContent } from "@/core/providers/root-layout-content";
 
 SplashScreen.preventAutoHideAsync();
 

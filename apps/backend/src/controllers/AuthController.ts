@@ -85,6 +85,10 @@ class AuthController {
     try {
       const service = await authService.forgotPasswordService(c);
 
+      if (service instanceof Response) {
+        return service;
+      }
+
       if (!service) {
         return HttpResponse(c).badGateway();
       }

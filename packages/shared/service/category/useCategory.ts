@@ -1,9 +1,13 @@
-import { useCreate } from "./state/mutation";
+import {
+  createCategoryMutationOptions,
+  updateCategoryMutationOptions,
+} from "./state/mutation";
 
 export function useCategory() {
   return {
     mutation: {
-      create: useCreate,
+      create: createCategoryMutationOptions,
+      update: updateCategoryMutationOptions,
     },
     query: {
       //

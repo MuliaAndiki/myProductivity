@@ -79,7 +79,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ ns, state, service }) => {
           </View>
           <View className=" flex w-full gap-2 justify-between flex-row items-center  ">
             <ButtonWrapper
-              className={`flex-1 ${state.render === "username" ? "bg-primary" : "bg-secondary"}`}
+              className={`flex-1 ${state.render === "username" ? "bg-primary" : "bg-secondary"} `}
               onPress={() => state.setRender("username")}
               startIcon={
                 <Ionicons

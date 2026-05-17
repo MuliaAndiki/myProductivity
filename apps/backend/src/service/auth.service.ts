@@ -190,7 +190,7 @@ class AuthService {
     try {
       const auth = c.body as PickForgotPassword;
       const { email, phone, username } = auth;
-      if (!auth.email && !auth.phone) {
+      if (!email || !phone || !username) {
         return HttpResponse(c).badRequest('email & phone request');
       }
       const user = await prisma.user.findFirst({
@@ -206,14 +206,20 @@ class AuthService {
       const otp = generateOtp(6);
       const otpExpires = new Date(Date.now() + 5 * 60 * 1000);
 
+      // failed
       if (user.email) {
         await sendOTPEmail(user.email, otp);
-        result = await prisma.user.update({
-          where: { id: user.id },
-          data: { otp, expOtp: otpExpires },
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            otp: otp,
+            expOtp: otpExpires,
+          },
         });
       } else {
-        result = user;
+        return user;
       }
 
       return result;

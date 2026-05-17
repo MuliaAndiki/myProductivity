@@ -35,7 +35,7 @@ const LoginContainer = () => {
       setIsKeyboardVisible(false),
     );
     return () => {
-      (showListener.remove(), hideListener.remove());
+      showListener.remove(), hideListener.remove();
     };
   }, []);
 

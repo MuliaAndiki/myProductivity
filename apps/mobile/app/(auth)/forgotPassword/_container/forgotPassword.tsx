@@ -2,7 +2,7 @@ import ForgotPasswordSection from "@/components/section/auth/forgotPassword/page
 import { useAppNameSpace } from "@/hooks/costum/namespace";
 import { useServiceMobile } from "@/hooks/service/module/useService";
 import { FormForgotPassword } from "@repo/shared";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Keyboard, View } from "react-native";
 import { useEffect } from "react";
 import { SelectedAuthWrapper } from "@/types/form";
@@ -22,6 +22,7 @@ const ForgotPasswordContainer = () => {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
   const [selectForgotPassword, setSelectForgotPassword] =
     useState<SelectedAuthWrapper>("email");
+
   const handleForgotPassword = async () => {
     await forgotPasswordMutate.ForgotPassword(formForgotPassword);
   };
@@ -39,6 +40,11 @@ const ForgotPasswordContainer = () => {
       hideListener.remove();
     };
   }, []);
+
+  const lottieSize = useMemo(
+    () => (isKeyboardVisible ? 120 : 280),
+    [isKeyboardVisible],
+  );
   return (
     <View className="w-full min-h-screen">
       <ForgotPasswordSection
@@ -50,6 +56,7 @@ const ForgotPasswordContainer = () => {
           setFormForgotPassword: setFormForgotPassword,
           isKeyboardVisible: isKeyboardVisible,
           setIsKeyBoardVisible: setIsKeyboardVisible,
+          lottieSize: lottieSize,
         }}
         service={{
           mutate: {
