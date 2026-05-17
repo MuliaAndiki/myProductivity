@@ -4,6 +4,7 @@ import {
   PickRegister,
   PickResetPassword,
   PickSendOtp,
+  PickAddUsername,
   PickVerify,
 } from "../../@types/auth.types";
 import AxiosClient from "../../utils/axios";
@@ -34,13 +35,23 @@ class AuthApi {
   public async ForgotPassword(
     payload: PickForgotPassword,
   ): Promise<TResponse<any>> {
-    const res = await AxiosClient.post("/api/auth/forgot", payload);
+    const res = await AxiosClient.post("/api/auth/forgotPassword", payload);
     return res.data;
   }
   public async ResetPassword(
     payload: PickResetPassword,
   ): Promise<TResponse<any>> {
     const res = await AxiosClient.post("/api/auth/reset-password", payload);
+    return res.data;
+  }
+  public async GetUsername(username?: string): Promise<TResponse<any>> {
+    const res = await AxiosClient.get(
+      `/api/auth/username?username=${username}`,
+    );
+    return res.data;
+  }
+  public async AddUsername(payload: PickAddUsername): Promise<TResponse<any>> {
+    const res = await AxiosClient.patch("/api/auth/addUsername", payload);
     return res.data;
   }
 }
