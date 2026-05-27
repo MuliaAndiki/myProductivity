@@ -1,9 +1,10 @@
 import "@/styles/global.css";
 import "@/utils/Axios.client";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import * as SplashScreen from "expo-splash-screen";
+
 import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { AppProviders } from "@/core/providers/app-providers";
 import { RootLayoutContent } from "@/core/providers/root-layout-content";

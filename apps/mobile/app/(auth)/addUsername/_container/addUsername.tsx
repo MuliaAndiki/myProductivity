@@ -1,11 +1,11 @@
-import AddUsernameSection from "@/components/section/auth/addUsername/page-section";
-import { View } from "react-native";
-import { useAppNameSpace } from "@/hooks/costum/namespace";
-import { useState, useMemo } from "react";
-import { useServiceMobile } from "@/hooks/service/module/useService";
-import { PickAddUsername, unwrapResponse } from "@repo/shared";
+import { PickAddUsername, QueryUsernameRespone,unwrapResponse  } from "@repo/shared";
 import { useLocalSearchParams } from "expo-router";
-import { QueryUsernameRespone } from "@repo/shared";
+import { useMemo,useState } from "react";
+import { View } from "react-native";
+
+import AddUsernameSection from "@/components/section/auth/addUsername/page-section";
+import { useAppNameSpace } from "@/hooks/costum/namespace";
+import { useServiceMobile } from "@/hooks/service/module/useService";
 
 const AddUsernameContainer = () => {
   const ns = useAppNameSpace();

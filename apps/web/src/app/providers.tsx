@@ -8,7 +8,7 @@ import { AlertProvinder } from '@/hooks/useAlert/costum-alert';
 import { ReactQueryClientProvider } from '@/pkg/react-query/query-client.pkg';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from '@/core/providers/theme.provider';
-import { SidebarProvider } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@repo/shared';
 import { composeProviders } from './composeProvinders';
 import { AuthProvider } from '@/core/providers/auth.provider';
 import { LenisProvider } from '@/core/providers/lenis.provider';

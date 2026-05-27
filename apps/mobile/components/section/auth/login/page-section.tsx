@@ -1,17 +1,16 @@
-import { TouchableOpacity, View } from "react-native";
-import { Text } from "@/components/ui/text";
-import { FlatColors } from "@/core/providers/theme.provinder";
-import { InputWrapper } from "@/components/wrapper/InputWrapper";
-import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
-import React from "react";
-import { FormLogin } from "@repo/shared";
-import { Link } from "expo-router";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Image } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { FormLogin , kebabCaseToWords,Text  } from "@repo/shared";
+import { Image } from "expo-image";
+import { Link } from "expo-router";
 import { Eye, EyeOff } from "lucide-react-native";
+import React from "react";
+import { TouchableOpacity, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
+import { InputWrapper } from "@/components/wrapper/InputWrapper";
+import { FlatColors } from "@/core/providers/theme.provinder";
 import { SelectedAuth } from "@/types/form";
-import { kebabCaseToWords } from "@repo/shared";
 
 interface LoginSectionProps {
   ns: {
@@ -30,7 +29,7 @@ interface LoginSectionProps {
     setIsKeyboardVisible: React.Dispatch<React.SetStateAction<boolean>>;
     lottieSize: any;
     render: SelectedAuth;
-    setRender: React.Dispatch<React.SetStateAction<SelectedAuth>>;
+    setRender: (type: SelectedAuth) => void;
     switching: boolean;
     setSwitching: React.Dispatch<React.SetStateAction<boolean>>;
   };
@@ -131,6 +130,7 @@ const LoginSection: React.FC<LoginSectionProps> = ({ ns, state, service }) => {
                 {kebabCaseToWords(state.render)}
               </Text>
               <InputWrapper
+                key={state.render}
                 placeholder={
                   state.render === "username" ? "Fluxo" : "082345678"
                 }

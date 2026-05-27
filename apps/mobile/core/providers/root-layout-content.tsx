@@ -1,11 +1,11 @@
+import { ThemeToggle } from "@repo/shared";
 import { Stack } from "expo-router";
 import { useMemo } from "react";
 
-import ThemeToggle from "@/components/ui/toggleTheme";
 import { useTheme } from "@/core/providers/theme.provinder";
 
 export function RootLayoutContent() {
-  const { colors, isDark, theme } = useTheme();
+  const { colors, isDark, theme, toggleTheme } = useTheme();
 
   const screenOptions = useMemo(
     () => ({
@@ -13,9 +13,9 @@ export function RootLayoutContent() {
         backgroundColor: isDark ? colors.card : colors.background,
       },
       headerTintColor: colors.text,
-      headerRight: () => <ThemeToggle />,
+      headerRight: () => <ThemeToggle theme={theme} onPress={toggleTheme} />,
     }),
-    [colors.background, colors.card, colors.text, isDark],
+    [colors.background, colors.card, colors.text, isDark, theme, toggleTheme],
   );
 
   return (

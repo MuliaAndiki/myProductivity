@@ -1,33 +1,38 @@
-import { Error } from "@/components/err/error";
-import ResetPasswordSection from "@/components/section/auth/resetPassword/page-section";
-import { useAppNameSpace } from "@/hooks/costum/namespace";
-import { useServiceMobile } from "@/hooks/service/module/useService";
 import { PickResetPassword } from "@repo/shared";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { Keyboard, View } from "react-native";
 
+import ResetPasswordSection from "@/components/section/auth/resetPassword/page-section";
+import { useAppNameSpace } from "@/hooks/costum/namespace";
+import { useServiceMobile } from "@/hooks/service/module/useService";
+
 const ResetPasswordContainer = () => {
   const service = useServiceMobile();
   const ns = useAppNameSpace();
-  const params = useLocalSearchParams<{ identifer?: string; target?: any }>();
-  const identifer = params.identifer ?? "";
-  const isEmail = identifer.includes("@");
+  const params = useLocalSearchParams<{
+    email?: string;
+    target?: any;
+    phone?: string;
+  }>();
+
+  // not use
+  const isEmail = params.email!.includes("@");
   const target = params.target ?? "";
 
   const resetPasswordMutate = service.auth.mutation.reset();
 
-  // NOT FIX LOGIC
-
   //state
   const [formResetPassword, setFormResetPassword] = useState<PickResetPassword>(
     {
-      email: isEmail ? identifer : "",
+      email: params.email ?? "",
       password: "",
-      phone: isEmail ? "" : identifer,
+      phone: params.phone ?? "",
       username: "",
     },
   );
+
+  console.log(formResetPassword, "payload");
   const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
   const [newPassword, setNewPassword] = useState<string>("");
 
@@ -37,15 +42,7 @@ const ResetPasswordContainer = () => {
 
   //handler
   const handlerResetPassword = async () => {
-    try {
-      await resetPasswordMutate.ResetPassword(formResetPassword);
-
-      ns.router.push({
-        pathname: target,
-      });
-    } catch (error) {
-      Error(error);
-    }
+    await resetPasswordMutate.ResetPassword(formResetPassword, params.target);
   };
   //async
   useEffect(() => {

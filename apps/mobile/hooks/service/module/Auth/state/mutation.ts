@@ -1,18 +1,20 @@
-import { useAppNameSpace } from "@/hooks/costum/namespace";
-import { useMutation } from "@tanstack/react-query";
-
-import { setRole, setToken } from "@/stores/authSlice/authSlice";
 import {
+  detect2Identifier,
   FormForgotPassword,
   FormLogin,
   FormRegister,
   PickAddUsername,
+  PickForgotPassword,
+  PickRegister,
   PickResetPassword,
   PickSendOtp,
+  PickUpdateProfile,
   PickVerify,
-} from "@repo/shared";
-import { logout } from "@/stores/authSlice/authSlice";
-import { useAuthRepo } from "@repo/shared";
+ useAuthRepo } from "@repo/shared";
+import { useMutation } from "@tanstack/react-query";
+
+import { useAppNameSpace } from "@/hooks/costum/namespace";
+import { logout,setRole, setToken  } from "@/stores/authSlice/authSlice";
 
 export function useLoginService() {
   const ns = useAppNameSpace();
@@ -72,7 +74,7 @@ export function useLoginService() {
 export function useRegisterService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const registerMutation = useMutation<any, Error, FormRegister>(
+  const registerMutation = useMutation<any, Error, PickRegister>(
     module.mutation.register(),
   );
 
@@ -249,7 +251,7 @@ export function useResendService() {
 export function useForgotPasswordService() {
   const ns = useAppNameSpace();
   const module = useAuthRepo();
-  const forgot = useMutation<any, Error, FormForgotPassword>(
+  const forgot = useMutation<any, Error, PickForgotPassword>(
     module.mutation.forgot(),
   );
 
@@ -259,40 +261,24 @@ export function useForgotPasswordService() {
       return false;
     }
 
-    const payload: any = {};
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-      formForgotPassword.identifer,
-    );
+    const payload: any = { ...detect2Identifier(formForgotPassword.identifer) };
 
-    if (isEmail) {
-      payload.email = formForgotPassword.identifer;
-    } else {
-      payload.phone = formForgotPassword.identifer;
-    }
-
-    // not fix
+    // not test
+    console.log(payload, "ini payload");
     forgot.mutate(payload, {
       onSuccess: (res) => {
         const email = res.data.email as string;
         const phone = res.data.phone as string;
-        if (!email) {
-          ns.router.push({
-            pathname: "/(auth)/forgotPassword/page",
-            params: {
-              identifer: phone,
-              target: "/(auth)/login/page",
-            },
-          });
-        } else {
-          ns.router.push({
-            pathname: "/(auth)/verifikasi/page",
-            params: {
-              target: "/(auth)/resetPassword/page",
-              identifer: email,
-              point: "forgotPassword",
-            },
-          });
-        }
+        ns.router.push({
+          pathname: "/(auth)/verifikasi/page",
+          params: {
+            target: "/(auth)/resetPassword/page",
+            email: email,
+            phone: phone,
+            point: "forgotPassword",
+          },
+        });
+
         ns.alert.toast({
           title: "successfully",
           icon: "success",
@@ -320,14 +306,24 @@ export function useResetPasswordService() {
     module.mutation.reset(),
   );
 
-  const ResetPassword = async (formResetPassword: PickResetPassword) => {
+  const ResetPassword = async (
+    formResetPassword: PickResetPassword,
+    target: any,
+  ) => {
     if (!formResetPassword.password) {
       // no alert
       return false;
     }
     reset.mutateAsync(formResetPassword, {
       onSuccess: () => {
-        //
+        ns.router.push({
+          pathname: target,
+        });
+        ns.alert.toast({
+          title: "succesfuly",
+          icon: "success",
+          message: "successfully update password",
+        });
       },
       onError: (err) => {
         ns.alert.toast({
@@ -382,4 +378,13 @@ export function useAddUsernameService() {
     });
   };
   return { AddUsername, isPending: addUsername.isPending };
+}
+
+// not inisiet
+export function useUpdateProfileService() {
+  const module = useAuthRepo();
+  const updateProfile = useMutation<any, Error, PickUpdateProfile>(
+    module.mutation.updateProfile(),
+  );
+  //
 }

@@ -1,18 +1,25 @@
+import { PickVerify } from "@repo/shared";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect, useMemo, useState } from "react";
+import { Keyboard, View } from "react-native";
+
+import { Error } from "@/components/err/error";
 import VerifyOtpSection from "@/components/section/auth/verifyOtp/page-section";
 import { useAppNameSpace } from "@/hooks/costum/namespace";
 import { useServiceMobile } from "@/hooks/service/module/useService";
-import { PickVerify } from "@repo/shared";
-import { useEffect, useMemo, useState } from "react";
-import { Keyboard, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
-import { Error } from "@/components/err/error";
 
 const VerifyOtpContainer = () => {
   const ns = useAppNameSpace();
   const service = useServiceMobile();
 
   //params
-  const params = useLocalSearchParams<any>();
+  const params = useLocalSearchParams<{
+    email?: string;
+    phone?: string;
+    username?: string;
+    point: string;
+    target?: any;
+  }>();
 
   // mutate
   const verifyOtpMutation = service.auth.mutation.verifyOtp();
@@ -20,10 +27,12 @@ const VerifyOtpContainer = () => {
 
   //state
   const [formVerifify, setFormVerify] = useState<PickVerify>({
-    email: params.email,
-    phone: params.phone,
+    email: params.email ?? "",
+    phone: params.phone ?? "",
     otp: "",
   });
+
+  console.log(params.point, "ini dari forgot password");
 
   const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
   const [colldown, setColldown] = useState<number>(0);
@@ -47,11 +56,12 @@ const VerifyOtpContainer = () => {
           },
         });
       } else {
-        // disini belum fix
+        // username params disini blum fix logic nya
         ns.router.push({
           pathname: params.target,
           params: {
-            identifer: params.email,
+            email: params.email,
+            phone: params.phone,
             target: "/(auth)/login/page",
           },
         });
@@ -61,10 +71,11 @@ const VerifyOtpContainer = () => {
     }
   };
 
+  //  not fix
   const handleResend = async () => {
     if (resendMutation.isPending) return false;
     try {
-      await resendMutation.Resend({ email: params.email });
+      await resendMutation.Resend({ email: params.email ?? "" });
 
       setColldown(300);
     } catch (error) {

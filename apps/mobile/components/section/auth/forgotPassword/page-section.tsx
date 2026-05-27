@@ -1,14 +1,14 @@
+import { Ionicons } from "@expo/vector-icons";
+import { FormForgotPassword, kebabCaseToWords , Text } from "@repo/shared";
+import { Link } from "expo-router";
+import LottieView from "lottie-react-native";
+import { View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
 import { InputWrapper } from "@/components/wrapper/InputWrapper";
 import { FlatColors } from "@/core/providers/theme.provinder";
-import { FormForgotPassword, kebabCaseToWords } from "@repo/shared";
-import { View } from "react-native";
-import { Text } from "@/components/ui/text";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { SelectedAuthWrapper } from "@/types/form";
-import { Link } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import LottieView from "lottie-react-native";
+import { SelectedAuthIncludeEmail } from "@/types/form";
 
 interface ForgotPasswordSectionProps {
   ns: {
@@ -31,9 +31,9 @@ interface ForgotPasswordSectionProps {
     };
   };
   isActive: {
-    selectForgotPassword: SelectedAuthWrapper;
+    selectForgotPassword: SelectedAuthIncludeEmail;
     setSelectForgotPassword: React.Dispatch<
-      React.SetStateAction<SelectedAuthWrapper>
+      React.SetStateAction<SelectedAuthIncludeEmail>
     >;
   };
 }
@@ -117,24 +117,6 @@ const ForgotPasswordSection: React.FC<ForgotPasswordSectionProps> = ({
                   className={`font-semibold ${isActive.selectForgotPassword === "phone" ? "text-background" : "text-foreground"}`}
                 >
                   Phone
-                </Text>
-              </ButtonWrapper>
-              <ButtonWrapper
-                className={`flex-1 ${isActive.selectForgotPassword === "username" ? "bg-primary" : "bg-background"}`}
-                variant={"auth"}
-                leftIcon={
-                  <Ionicons
-                    name="person"
-                    size={16}
-                    color={`${isActive.selectForgotPassword === "username" ? ns.theme.secondary : ns.theme.foreground}`}
-                  />
-                }
-                onPress={() => isActive.setSelectForgotPassword("username")}
-              >
-                <Text
-                  className={`font-semibold ${isActive.selectForgotPassword === "username" ? "text-background" : "text-foreground"}`}
-                >
-                  Username
                 </Text>
               </ButtonWrapper>
             </View>

@@ -1,6 +1,7 @@
+import { View } from "react-native";
+
 import HomeUserSection from "@/components/section/private/user/home/page-section";
 import { useServiceMobile } from "@/hooks/service/module/useService";
-import { View } from "react-native";
 
 const HomeUserContainer = () => {
   const service = useServiceMobile();

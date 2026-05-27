@@ -7,6 +7,7 @@ import {
   resendMutationOptions,
   resetPasswordMutationOptions,
   verifyOtpMutationOptions,
+  updateProfileMutationOptions,
 } from "./state/mutation";
 import { getUsernameQueryOptions } from "./state/query";
 export function useAuthRepo() {
@@ -20,6 +21,7 @@ export function useAuthRepo() {
       forgot: forgotPasswordMutationOptions,
       reset: resetPasswordMutationOptions,
       addUsername: addUsernameMutationOptions,
+      updateProfile: updateProfileMutationOptions,
     },
     query: {
       getUsername: getUsernameQueryOptions,

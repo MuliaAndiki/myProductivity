@@ -1,8 +1,9 @@
+import { FormLogin } from "@repo/shared";
+import { useEffect, useMemo, useState } from "react";
 import { Keyboard, View } from "react-native";
+
 import LoginSection from "@/components/section/auth/login/page-section";
 import { useAppNameSpace } from "@/hooks/costum/namespace";
-import { useEffect, useMemo, useState } from "react";
-import { FormLogin } from "@repo/shared";
 import { useServiceMobile } from "@/hooks/service/module/useService";
 import { SelectedAuth } from "@/types/form";
 
@@ -26,6 +27,7 @@ const LoginContainer = () => {
     await loginMutation.login(formLogin);
   };
 
+  console.log(formLogin);
   // async
   useEffect(() => {
     const showListener = Keyboard.addListener("keyboardWillShow", () => {
@@ -35,9 +37,19 @@ const LoginContainer = () => {
       setIsKeyboardVisible(false),
     );
     return () => {
-      showListener.remove(), hideListener.remove();
+      (showListener.remove(), hideListener.remove());
     };
   }, []);
+
+  // switch
+  const handleSwictRender = (type: SelectedAuth) => {
+    (setRender(type),
+      setFormLogin((prev) => ({
+        ...prev,
+        phone: "",
+        username: "",
+      })));
+  };
 
   const lottieSize = useMemo(
     () => (isKeyboardVisible ? 145 : 305),
@@ -56,7 +68,7 @@ const LoginContainer = () => {
           setIsKeyboardVisible: setIsKeyboardVisible,
           lottieSize: lottieSize,
           render: render,
-          setRender: setRender,
+          setRender: handleSwictRender,
           setSwitching: setSwitching,
           switching: switching,
         }}

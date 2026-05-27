@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@repo/shared';
 import { useTheme } from '@/core/providers/theme.provider';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
@@ -11,7 +11,7 @@ export default function ThemeToggle() {
     <Button
       variant="ghost"
       size="icon"
-      onClick={toggleTheme}
+      onPress={toggleTheme}
       className="size-9 rounded-md"
       aria-label="Toggle theme"
     >

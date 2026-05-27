@@ -1,4 +1,4 @@
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, Text,View } from "react-native";
 
 const HomeAdminSection = () => {
   return (

@@ -1,5 +1,6 @@
+import { ScrollView, Text,View } from "react-native";
+
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
-import { ScrollView, View, Text } from "react-native";
 
 interface HomeUserSectionProps {
   service: {

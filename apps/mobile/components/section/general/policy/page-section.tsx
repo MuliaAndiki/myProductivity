@@ -1,4 +1,4 @@
-import { ScrollView, View, Text } from "react-native";
+import { ScrollView, Text,View } from "react-native";
 const PolicySection = () => {
   return (
     <ScrollView className="w-full min-h-screen bg-background">

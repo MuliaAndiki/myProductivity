@@ -1,15 +1,14 @@
+import { FormRegister,Text  } from "@repo/shared";
+import { Image } from "expo-image";
+import { Link } from "expo-router";
+import { Eye,EyeOff  } from "lucide-react-native";
+import React from "react";
+import { TouchableOpacity,View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
 import { InputWrapper } from "@/components/wrapper/InputWrapper";
 import { FlatColors } from "@/core/providers/theme.provinder";
-import { View, TouchableOpacity } from "react-native";
-import { Text } from "@/components/ui/text";
-import { FormRegister } from "@repo/shared";
-import React from "react";
-import { EyeOff } from "lucide-react-native";
-import { Eye } from "lucide-react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Link } from "expo-router";
-import { Image } from "expo-image";
 
 interface RegisterSectionProps {
   ns: {

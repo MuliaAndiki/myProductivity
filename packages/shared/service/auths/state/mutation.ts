@@ -5,9 +5,10 @@ import {
   PickRegister,
   PickResetPassword,
   PickSendOtp,
+  PickUpdateProfile,
   PickVerify,
-} from "@/@types/auth.types";
-import Api from "@/api/props.service";
+} from "../../../@types/auth.types";
+import Api from "../../../api/props.service";
 
 export function registerMutationOptions() {
   return {
@@ -55,5 +56,11 @@ export function resetPasswordMutationOptions() {
 export function addUsernameMutationOptions() {
   return {
     mutationFn: (payload: PickAddUsername) => Api.Auth.AddUsername(payload),
+  };
+}
+
+export function updateProfileMutationOptions() {
+  return {
+    mutationFn: (payload: PickUpdateProfile) => Api.Auth.UpdateProfile(payload),
   };
 }

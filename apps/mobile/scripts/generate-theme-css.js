@@ -12,7 +12,7 @@ function parseThemeConfig(source) {
     throw new Error("Could not find `export const themeConfig = { ... }` in theme.config.ts");
   }
 
-  // eslint-disable-next-line no-new-func
+   
   return new Function(`return (${match[1]});`)();
 }
 

@@ -10,7 +10,7 @@ export interface Auth {
   phone: string;
   token?: string;
   role: RoleType;
-  avaUrl: string;
+  avatarsUrl: string;
   createdAt: Date;
   updatedAt: Date;
   otp?: string;
@@ -24,14 +24,10 @@ export interface Auth {
 export type JwtPayload = Pick<Auth, "id" | "role" | "sessionId">;
 export type PickRegister = Pick<
   Auth,
-  | "email"
-  | "first_name"
-  | "last_name"
-  | "password"
-  | "role"
-  | "phone"
-  | "username"
->;
+  "email" | "first_name" | "last_name" | "password" | "role" | "phone"
+> & {
+  username?: string;
+};
 export type PickLogin = Pick<Auth, "password" | "phone" | "username">;
 export type PickID = Pick<Auth, "id">;
 export type PickForgotPassword = Pick<Auth, "email" | "phone" | "username">;
@@ -43,7 +39,7 @@ export type PickResetPassword = Pick<
 >;
 export type PickUpdateProfile = Pick<
   Auth,
-  "email" | "first_name" | "last_name" | "avaUrl" | "phone"
+  "email" | "first_name" | "last_name" | "avatarsUrl" | "phone"
 >;
 export type PickUpdatePassword = Pick<Auth, "password">;
 export type PickActiveAccount = Pick<Auth, "activateToken" | "password">;

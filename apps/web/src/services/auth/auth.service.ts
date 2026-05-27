@@ -1,5 +1,5 @@
 import AxiosClient from '@/utils/axios.client';
-import { TResponse } from '@/pkg/react-query/mutation-wrapper.type';
+import { TResponse } from '@repo/shared';
 import { FormLoginType, FormRegisterType } from '@/types/form';
 
 class AuthApi {

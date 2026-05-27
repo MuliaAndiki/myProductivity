@@ -1,7 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { colorScheme } from "nativewind";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
-import { colorScheme } from "nativewind";
+
 import { themeConfig } from "@/config/theme.config";
 
 type Theme = "light" | "dark";

@@ -1,9 +1,10 @@
-import Constants from "expo-constants";
 import {
   AxiosClient,
   setBaseURLProvider,
   setTokenProvider,
 } from "@repo/shared";
+import Constants from "expo-constants";
+
 import { store } from "@/stores/store";
 
 setBaseURLProvider(() => Constants.expoConfig?.extra?.BACKEND_URL);

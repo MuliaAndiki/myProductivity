@@ -1,12 +1,12 @@
-import { FlatColors } from "@/core/providers/theme.provinder";
+import { Ionicons } from "@expo/vector-icons";
+import { PickAddUsername, QueryUsernameRespone,Text  } from "@repo/shared";
+import LottieView from "lottie-react-native";
 import { View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Text } from "@/components/ui/text";
-import LottieView from "lottie-react-native";
-import { InputWrapper } from "@/components/wrapper/InputWrapper";
-import { PickAddUsername, QueryUsernameRespone } from "@repo/shared";
-import { Ionicons } from "@expo/vector-icons";
+
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
+import { InputWrapper } from "@/components/wrapper/InputWrapper";
+import { FlatColors } from "@/core/providers/theme.provinder";
 
 interface AddUsernameSectionProps {
   ns: {

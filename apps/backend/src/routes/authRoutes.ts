@@ -27,7 +27,7 @@ class AuthRouter {
       }),
       detail: {
         tags: ['Auth'],
-        description: 'Login With Email & Phone',
+        description: 'Login With username & Phone',
       },
     });
     this.authRouter.post('/register', (c: AppContext) => AuthController.register(c), {
@@ -81,12 +81,14 @@ class AuthRouter {
       }),
       detail: {
         tags: ['Auth'],
-        description: '',
+        description: 'Resend Otp',
       },
     });
     this.authRouter.post('/reset-password', (c: AppContext) => AuthController.resetPassword(c), {
       body: t.Object({
         password: t.Required(t.String()),
+        email: t.Required(t.String({ format: 'email' })),
+        phone: t.Required(t.String()),
       }),
       detail: {
         tags: ['Auth'],
@@ -104,7 +106,26 @@ class AuthRouter {
         description: 'add for new user Username',
       },
     });
-    this.authRouter.get('/username', (c: AppContext) => AuthController.getUsername(c));
+    this.authRouter.get('/username', (c: AppContext) => AuthController.getUsername(c), {
+      detail: {
+        tags: ['Auth'],
+        description: 'Get Me Endpoint',
+      },
+    });
+    this.authRouter.patch('/profile', (c: AppContext) => AuthController.UpdateProfile(c), {
+      beforeHandle: [verifyToken().beforeHandle],
+      body: t.Object({
+        avatarsUrl: t.Optional(t.String()),
+        email: t.Optional(t.String({ format: 'email' })),
+        phone: t.Optional(t.String()),
+        first_name: t.Optional(t.String()),
+        last_name: t.Optional(t.String()),
+      }),
+      detail: {
+        tags: ['Auth'],
+        description: 'Update Profile',
+      },
+    });
   }
 }
 
