@@ -18,7 +18,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import Image from 'next/image';
-import { kebabCaseToWords } from '@/utils/string.format';
+import { kebabCaseToWords } from '@repo/shared';
 
 // Menu items with proper routes
 const items = [

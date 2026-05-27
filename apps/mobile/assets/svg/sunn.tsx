@@ -1,5 +1,5 @@
-import Svg, { Path, Mask } from "react-native-svg";
 import { Image } from "expo-image";
+import Svg, { Mask,Path } from "react-native-svg";
 export default function Sun(props: any) {
   return (
     <Svg width={205} height={205} viewBox="0 0 345 345" fill="none" {...props}>

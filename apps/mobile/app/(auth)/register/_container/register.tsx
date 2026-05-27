@@ -1,8 +1,9 @@
+import { FormRegister } from "@repo/shared";
+import { useEffect, useState } from "react";
+import { Keyboard, View } from "react-native";
+
 import RegisterSection from "@/components/section/auth/register/page-section";
 import { useAppNameSpace } from "@/hooks/costum/namespace";
-import { Keyboard, View } from "react-native";
-import { useEffect, useState } from "react";
-import { FormRegister } from "@repo/shared";
 import { useServiceMobile } from "@/hooks/service/module/useService";
 
 const RegisterContainer = () => {

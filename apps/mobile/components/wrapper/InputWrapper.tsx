@@ -1,6 +1,7 @@
+import { Input } from "@/components/ui/input";
 import * as React from "react";
-import { Input } from "../ui/input";
 import { View } from "react-native";
+
 import { cn } from "@/lib/utils";
 
 interface InputWithIconProps extends React.ComponentProps<typeof Input> {

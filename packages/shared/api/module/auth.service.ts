@@ -6,7 +6,7 @@ import {
   PickSendOtp,
   PickAddUsername,
   PickVerify,
-} from "../../@types/auth.types";
+} from "../../types/auth.types";
 import AxiosClient from "../../utils/axios";
 import { TResponse } from "../../utils/trespone";
 

@@ -1,7 +1,4 @@
-import {
-  PickCreateCategory,
-  PickIDCategory,
-} from "../../@types/category.types";
+import { PickCreateCategory, PickIDCategory } from "../../types/category.types";
 import AxiosClient from "../../utils/axios";
 import { TResponse } from "../../utils/trespone";
 

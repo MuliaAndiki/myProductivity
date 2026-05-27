@@ -1,5 +1,6 @@
-import PolicySection from "@/components/section/general/policy/page-section";
 import { View } from "react-native";
+
+import PolicySection from "@/components/section/general/policy/page-section";
 
 const PolicyContainer = () => {
   return (

@@ -6,7 +6,7 @@ import {
   PickResetPassword,
   PickSendOtp,
   PickVerify,
-} from "@/@types/auth.types";
+} from "@/types/auth.types";
 import Api from "@/api/props.service";
 
 export function registerMutationOptions() {

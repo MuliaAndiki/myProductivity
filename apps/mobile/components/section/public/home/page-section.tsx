@@ -1,10 +1,11 @@
-import { ScrollView, View, Animated, Easing } from "react-native";
-import LottieView from "lottie-react-native";
 import { Text } from "@/components/ui/text";
-import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
-import Sun from "@/assets/svg/sunn";
 import { Link } from "expo-router";
+import LottieView from "lottie-react-native";
 import { useEffect, useRef } from "react";
+import { Animated, Easing, ScrollView, View } from "react-native";
+
+import Sun from "@/assets/svg/sunn";
+import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
 
 export default function SectionHomePage() {
   const rotate = useRef(new Animated.Value(0)).current;

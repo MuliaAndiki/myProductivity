@@ -1,6 +1,7 @@
-import { useDebounce } from "@/hooks/debounce/useDebounce";
-import { useQuery } from "@tanstack/react-query";
 import { useAuthRepo } from "@repo/shared";
+import { useQuery } from "@tanstack/react-query";
+
+import { useDebounce } from "@/hooks/debounce/useDebounce";
 
 export function useGetUsernameService(username: string) {
   const module = useAuthRepo();

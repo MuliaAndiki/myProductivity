@@ -1,11 +1,12 @@
-import OTPInput from "@/components/ui/inputOtp";
-import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
 import { PickVerify } from "@repo/shared";
 import { Router } from "expo-router";
-import React from "react";
-import { View, Text } from "react-native";
 import LottieView from "lottie-react-native";
+import React from "react";
+import { Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import OTPInput from "@/components/ui/inputOtp";
+
+import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
 import { FlatColors } from "@/core/providers/theme.provinder";
 
 interface VerifyOtpSectionProps {

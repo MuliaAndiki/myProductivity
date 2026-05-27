@@ -1,10 +1,11 @@
 import { PickResetPassword } from "@repo/shared";
-import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
-import { InputWrapper } from "@/components/wrapper/InputWrapper";
-import { Eye, EyeOff } from "lucide-react-native";
 import LottieView from "lottie-react-native";
+import { Eye, EyeOff } from "lucide-react-native";
 import { Text, TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
+import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
+import { InputWrapper } from "@/components/wrapper/InputWrapper";
 import { FlatColors } from "@/core/providers/theme.provinder";
 
 interface ResetPasswordSectionProps {
@@ -104,9 +105,9 @@ const ResetPasswordSection: React.FC<ResetPasswordSectionProps> = ({
                   }
                 >
                   {state.visiblePassword ? (
-                    <Eye size={18} className="text-muted-foreground" />
+                    <Eye size={18} color={ns.theme.foreground} />
                   ) : (
-                    <EyeOff size={18} className="text-muted-foreground" />
+                    <EyeOff size={18} color={ns.theme.foreground} />
                   )}
                 </TouchableOpacity>
               }
@@ -128,9 +129,9 @@ const ResetPasswordSection: React.FC<ResetPasswordSectionProps> = ({
                   }
                 >
                   {state.visibleConfirmPassword ? (
-                    <Eye size={18} className="text-muted-foreground" />
+                    <Eye size={18} color={ns.theme.foreground} />
                   ) : (
-                    <EyeOff size={18} className="text-muted-foreground" />
+                    <EyeOff size={18} color={ns.theme.foreground} />
                   )}
                 </TouchableOpacity>
               }

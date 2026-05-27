@@ -9,6 +9,7 @@ import {
   PickSendOtp,
   PickAddUsername,
   PickVerify,
+  PickUpdateProfile,
 } from '@repo/shared';
 import prisma from 'prisma/client';
 import bcryptjs from 'bcryptjs';
@@ -18,9 +19,8 @@ import jwt from 'jsonwebtoken';
 import { sanitizeUser } from '@/utils/sanitize';
 
 class AuthService {
-  public async RegisterService(c: AppContext) {
+  public async RegisterService(c: AppContext, auth: PickRegister) {
     try {
-      const auth = c.body as PickRegister;
       const { email, phone } = auth;
       if (!auth.first_name || !auth.last_name || !auth.password || !auth.email || !auth.phone) {
         return c.json?.({ status: 400, message: 'All fields are required' }, 400);
@@ -64,9 +64,8 @@ class AuthService {
     }
   }
 
-  public async LoginService(c: AppContext) {
+  public async LoginService(c: AppContext, auth: PickLogin) {
     try {
-      const auth = c.body as PickLogin;
       const { phone, username } = auth;
 
       if (!auth.password) {
@@ -93,7 +92,7 @@ class AuthService {
 
       const validatePassword = await bcryptjs.compare(auth.password, selectLogin.password!);
       if (!validatePassword) {
-        return HttpResponse(c).badRequest();
+        return HttpResponse(c).badRequest('select');
       }
 
       await prisma.userSession.deleteMany({
@@ -186,11 +185,10 @@ class AuthService {
       return HttpResponse(c).internalError(error);
     }
   }
-  public async forgotPasswordService(c: AppContext) {
+  public async forgotPasswordService(c: AppContext, auth: PickForgotPassword) {
     try {
-      const auth = c.body as PickForgotPassword;
       const { email, phone, username } = auth;
-      if (!email || !phone || !username) {
+      if (!email && !phone && !username) {
         return HttpResponse(c).badRequest('email & phone request');
       }
       const user = await prisma.user.findFirst({
@@ -202,46 +200,47 @@ class AuthService {
       if (!user) {
         return HttpResponse(c).notFound('email & phone not found');
       }
-      let result;
+
       const otp = generateOtp(6);
       const otpExpires = new Date(Date.now() + 5 * 60 * 1000);
 
-      // failed
-      if (user.email) {
-        await sendOTPEmail(user.email, otp);
-        await prisma.user.update({
-          where: {
-            id: user.id,
-          },
-          data: {
-            otp: otp,
-            expOtp: otpExpires,
-          },
-        });
-      } else {
-        return user;
+      if (!user.email) {
+        return HttpResponse(c).badRequest(
+          'Akun ini tidak memiliki email tertaut. Silahkan hubungi admin karena layanan WhatsApp belum tersedia.',
+        );
       }
+
+      const updated = await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          otp: otp,
+          expOtp: otpExpires,
+        },
+      });
+      await sendOTPEmail(user.email, otp);
+
+      const result = updated;
 
       return result;
     } catch (error) {
       return HttpResponse(c).internalError();
     }
   }
-  public async addUsernameService(c: AppContext) {
+  public async addUsernameService(c: AppContext, auth: PickAddUsername) {
     try {
-      const body = c.body as PickAddUsername;
-
-      if (!body) {
+      if (!auth) {
         return HttpResponse(c).notFound();
       }
 
       const update = await prisma.user.update({
         where: {
-          phone: body.phone,
-          email: body.email,
+          phone: auth.phone,
+          email: auth.email,
         },
         data: {
-          username: body.username,
+          username: auth.username,
         },
       });
 
@@ -253,9 +252,8 @@ class AuthService {
       HttpResponse(c).internalError(error);
     }
   }
-  public async VerifyOtpService(c: AppContext) {
+  public async VerifyOtpService(c: AppContext, auth: PickVerify) {
     try {
-      const auth = c.body as PickVerify;
       if (!auth.email || !auth.otp || !auth.phone) {
         return HttpResponse(c).notFound();
       }
@@ -285,9 +283,9 @@ class AuthService {
       return HttpResponse(c).internalError(c);
     }
   }
-  public async ResendOtpService(c: AppContext) {
+  public async ResendOtpService(c: AppContext, auth: PickSendOtp) {
     try {
-      const auth = c.body as PickSendOtp;
+      //  note use email not API
       if (!auth.email) {
         return HttpResponse(c).notFound('email not found');
       }
@@ -316,9 +314,8 @@ class AuthService {
       return HttpResponse(c).internalError(error);
     }
   }
-  public async ResetPasswordService(c: AppContext) {
+  public async ResetPasswordService(c: AppContext, auth: PickResetPassword) {
     try {
-      const auth = c.body as PickResetPassword;
       const { email, phone, username } = auth;
       if (!auth.password) {
         return HttpResponse(c).notFound('new password no fond');
@@ -363,6 +360,38 @@ class AuthService {
       });
 
       const result = query;
+
+      return result;
+    } catch (error) {
+      return HttpResponse(c).internalError(error);
+    }
+  }
+
+  public async UpdateProfileService(c: AppContext, auth: PickUpdateProfile, id: string) {
+    try {
+      if (!auth.avatarsUrl && !auth.email && !auth.first_name && !auth.last_name && !auth.phone) {
+        return HttpResponse(c).notFound('body not found');
+      }
+
+      // not fix logic kalo dia update email seharusnya dia send otp
+      const update = await prisma.user.update({
+        where: {
+          id: id,
+        },
+        data: {
+          avatarsUrl: auth.avatarsUrl,
+          email: auth.email,
+          first_name: auth.first_name,
+          last_name: auth.last_name,
+          phone: auth.phone,
+        },
+      });
+
+      if (!update) {
+        return HttpResponse(c).badRequest();
+      }
+
+      const result = update;
 
       return result;
     } catch (error) {

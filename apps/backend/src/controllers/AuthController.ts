@@ -1,4 +1,14 @@
-import { JwtPayload } from '@repo/shared';
+import {
+  JwtPayload,
+  PickAddUsername,
+  PickForgotPassword,
+  PickLogin,
+  PickRegister,
+  PickResetPassword,
+  PickSendOtp,
+  PickUpdateProfile,
+  PickVerify,
+} from '@repo/shared';
 import { AppContext } from '@/contex/index';
 import { HttpResponse } from '@/http';
 import authService from '@/service/auth.service';
@@ -8,7 +18,8 @@ import authService from '@/service/auth.service';
 class AuthController {
   public async register(c: AppContext) {
     try {
-      const service = await authService.RegisterService(c);
+      const auth = c.body as PickRegister;
+      const service = await authService.RegisterService(c, auth);
 
       if (!service) {
         return HttpResponse(c).badGateway();
@@ -27,7 +38,12 @@ class AuthController {
 
   public async addUsername(c: AppContext) {
     try {
-      const service = await authService.addUsernameService(c);
+      const auth = c.body as PickAddUsername;
+      const service = await authService.addUsernameService(c, auth);
+
+      if (service instanceof Response) {
+        return service;
+      }
 
       if (!service) {
         return HttpResponse(c).badGateway();
@@ -40,7 +56,8 @@ class AuthController {
   }
   public async login(c: AppContext) {
     try {
-      const service = await authService.LoginService(c);
+      const auth = c.body as PickLogin;
+      const service = await authService.LoginService(c, auth);
 
       if (service instanceof Response) {
         return service;
@@ -83,7 +100,8 @@ class AuthController {
   }
   public async forgotPassword(c: AppContext) {
     try {
-      const service = await authService.forgotPasswordService(c);
+      const auth = c.body as PickForgotPassword;
+      const service = await authService.forgotPasswordService(c, auth);
 
       if (service instanceof Response) {
         return service;
@@ -100,7 +118,8 @@ class AuthController {
   }
   public async verifyOtp(c: AppContext) {
     try {
-      const service = await authService.VerifyOtpService(c);
+      const auth = c.body as PickVerify;
+      const service = await authService.VerifyOtpService(c, auth);
 
       if (service instanceof Response) {
         return service;
@@ -118,7 +137,12 @@ class AuthController {
 
   public async resendOtp(c: AppContext) {
     try {
-      const service = await authService.ResendOtpService(c);
+      const auth = c.body as PickSendOtp;
+      const service = await authService.ResendOtpService(c, auth);
+
+      if (service instanceof Response) {
+        return service;
+      }
 
       if (!service) {
         HttpResponse(c).badRequest('service bad requets');
@@ -130,7 +154,8 @@ class AuthController {
   }
   public async resetPassword(c: AppContext) {
     try {
-      const service = await authService.ResetPasswordService(c);
+      const auth = c.body as PickResetPassword;
+      const service = await authService.ResetPasswordService(c, auth);
       if (!service) {
         return HttpResponse(c).badRequest();
       }
@@ -152,6 +177,30 @@ class AuthController {
       return HttpResponse(c).ok(service);
     } catch (error) {
       return HttpResponse(c).internalError(error);
+    }
+  }
+  public async UpdateProfile(c: AppContext) {
+    try {
+      const users = c.user as JwtPayload;
+      const auth = c.body as PickUpdateProfile;
+
+      if (!users) {
+        return HttpResponse(c).unauthorized();
+      }
+
+      const service = await authService.UpdateProfileService(c, auth, users.id);
+
+      if (service instanceof Response) {
+        return service;
+      }
+
+      if (!service) {
+        return HttpResponse(c).badRequest();
+      }
+
+      return HttpResponse(c).ok(service);
+    } catch (error) {
+      return HttpResponse(c).internalError('server internal error');
     }
   }
 }

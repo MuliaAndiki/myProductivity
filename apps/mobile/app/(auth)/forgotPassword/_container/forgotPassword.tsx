@@ -1,11 +1,11 @@
+import { FormForgotPassword } from "@repo/shared";
+import { useEffect, useMemo, useState } from "react";
+import { Keyboard, View } from "react-native";
+
 import ForgotPasswordSection from "@/components/section/auth/forgotPassword/page-section";
 import { useAppNameSpace } from "@/hooks/costum/namespace";
 import { useServiceMobile } from "@/hooks/service/module/useService";
-import { FormForgotPassword } from "@repo/shared";
-import { useState, useMemo } from "react";
-import { Keyboard, View } from "react-native";
-import { useEffect } from "react";
-import { SelectedAuthWrapper } from "@/types/form";
+import { SelectedAuthIncludeEmail } from "@/types/form";
 
 const ForgotPasswordContainer = () => {
   const ns = useAppNameSpace();
@@ -21,7 +21,7 @@ const ForgotPasswordContainer = () => {
 
   const [isKeyboardVisible, setIsKeyboardVisible] = useState<boolean>(false);
   const [selectForgotPassword, setSelectForgotPassword] =
-    useState<SelectedAuthWrapper>("email");
+    useState<SelectedAuthIncludeEmail>("email");
 
   const handleForgotPassword = async () => {
     await forgotPasswordMutate.ForgotPassword(formForgotPassword);
