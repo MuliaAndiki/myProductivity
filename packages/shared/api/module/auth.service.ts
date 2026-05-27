@@ -6,8 +6,7 @@ import {
   PickSendOtp,
   PickAddUsername,
   PickVerify,
-  PickUpdateProfile,
-} from "../../@types/auth.types";
+} from "../../types/auth.types";
 import AxiosClient from "../../utils/axios";
 import { TResponse } from "../../utils/trespone";
 
@@ -53,12 +52,6 @@ class AuthApi {
   }
   public async AddUsername(payload: PickAddUsername): Promise<TResponse<any>> {
     const res = await AxiosClient.patch("/api/auth/addUsername", payload);
-    return res.data;
-  }
-  public async UpdateProfile(
-    payload: PickUpdateProfile,
-  ): Promise<TResponse<any>> {
-    const res = await AxiosClient.patch("/api/auth/profile", payload);
     return res.data;
   }
 }

@@ -1,6 +1,7 @@
-export * from "./@types/auth.types";
+export * from "./types/auth.types";
+export * from "./types/category.types";
 export * from "./service/auths/useAuth";
-export * from "./components/ui";
+export * from "./service/category/useCategory";
 export {
   default as AxiosClient,
   setBaseURLProvider,

@@ -16,7 +16,7 @@ import {
   SidebarMenuItem,
   SidebarHeader,
   useSidebar,
-} from '@repo/shared';
+} from '@/components/ui/sidebar';
 import Image from 'next/image';
 import { kebabCaseToWords } from '@repo/shared';
 

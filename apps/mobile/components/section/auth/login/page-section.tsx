@@ -1,6 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { FormLogin , kebabCaseToWords,Text  } from "@repo/shared";
+import { FormLogin, kebabCaseToWords } from "@repo/shared";
 import { Image } from "expo-image";
+import { Text } from "@/components/ui/text";
 import { Link } from "expo-router";
 import { Eye, EyeOff } from "lucide-react-native";
 import React from "react";

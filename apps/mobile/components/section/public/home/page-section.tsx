@@ -1,8 +1,8 @@
-import { Text } from "@repo/shared";
+import { Text } from "@/components/ui/text";
 import { Link } from "expo-router";
 import LottieView from "lottie-react-native";
 import { useEffect, useRef } from "react";
-import { Animated, Easing,ScrollView, View } from "react-native";
+import { Animated, Easing, ScrollView, View } from "react-native";
 
 import Sun from "@/assets/svg/sunn";
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";

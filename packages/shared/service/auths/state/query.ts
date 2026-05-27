@@ -1,5 +1,5 @@
-import Api from "../../../api/props.service";
-import { queryKey } from "../../../utils";
+import Api from "@/api/props.service";
+import { queryKey } from "@/utils";
 
 export function getUsernameQueryOptions(username: string) {
   return {

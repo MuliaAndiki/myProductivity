@@ -1,5 +1,5 @@
 import { FormForgotPassword } from "@repo/shared";
-import { useEffect,useMemo,useState  } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Keyboard, View } from "react-native";
 
 import ForgotPasswordSection from "@/components/section/auth/forgotPassword/page-section";

@@ -1,4 +1,4 @@
-import { Input } from "@repo/shared";
+import { Input } from "@/components/ui/input";
 import * as React from "react";
 import { View } from "react-native";
 

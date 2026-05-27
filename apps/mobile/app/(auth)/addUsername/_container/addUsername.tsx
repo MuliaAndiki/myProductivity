@@ -1,6 +1,10 @@
-import { PickAddUsername, QueryUsernameRespone,unwrapResponse  } from "@repo/shared";
+import {
+  PickAddUsername,
+  QueryUsernameRespone,
+  unwrapResponse,
+} from "@repo/shared";
 import { useLocalSearchParams } from "expo-router";
-import { useMemo,useState } from "react";
+import { useMemo, useState } from "react";
 import { View } from "react-native";
 
 import AddUsernameSection from "@/components/section/auth/addUsername/page-section";

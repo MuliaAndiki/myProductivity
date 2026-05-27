@@ -1,6 +1,12 @@
 'use client';
 
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@repo/shared';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@//components/ui/dialog';
 import { ModalProps } from '@/types/ui';
 
 const iconMap = {

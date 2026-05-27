@@ -1,6 +1,6 @@
-import { Text } from "@repo/shared";
 import { Link } from "expo-router";
 import { View } from "react-native";
+import { Text } from "@/components/ui/text";
 
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";
 import { ButtonSliceAuth } from "@/core/static";

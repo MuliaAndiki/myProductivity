@@ -1,10 +1,10 @@
-import { Button } from '@repo/shared';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@repo/shared';
+} from '@/components/ui/dropdown-menu';
 import { Bell } from 'lucide-react';
 
 export default function NotificationDropdown() {

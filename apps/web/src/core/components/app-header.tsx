@@ -6,7 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from '@repo/shared';
+} from '@/components/ui/navigation-menu';
 import { navigationMenuConfig } from '@/configs/app.config';
 import { cn } from '@/utils/classname';
 import Image from 'next/image';

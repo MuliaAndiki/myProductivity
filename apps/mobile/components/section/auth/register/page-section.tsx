@@ -1,9 +1,10 @@
-import { FormRegister,Text  } from "@repo/shared";
+import { FormRegister } from "@repo/shared";
+import { Text } from "@/components/ui/text";
 import { Image } from "expo-image";
 import { Link } from "expo-router";
-import { Eye,EyeOff  } from "lucide-react-native";
+import { Eye, EyeOff } from "lucide-react-native";
 import React from "react";
-import { TouchableOpacity,View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";

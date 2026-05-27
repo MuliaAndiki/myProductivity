@@ -1,4 +1,4 @@
-import { Button, type ButtonProps } from "@repo/shared";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import * as React from "react";
 import { View } from "react-native";
 

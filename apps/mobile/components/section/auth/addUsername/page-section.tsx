@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
-import { PickAddUsername, QueryUsernameRespone,Text  } from "@repo/shared";
+import { PickAddUsername, QueryUsernameRespone } from "@repo/shared";
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
+import { Text } from "@/components/ui/text";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { ButtonWrapper } from "@/components/wrapper/ButtonWrapper";

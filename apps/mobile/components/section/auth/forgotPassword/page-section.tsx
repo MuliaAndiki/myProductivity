@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
-import { FormForgotPassword, kebabCaseToWords , Text } from "@repo/shared";
+import { FormForgotPassword, kebabCaseToWords } from "@repo/shared";
 import { Link } from "expo-router";
+import { Text } from "@/components/ui/text";
 import LottieView from "lottie-react-native";
 import { View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
